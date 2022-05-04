@@ -1,4 +1,4 @@
-import { Widget } from "./components/Widget";
+import { Widget } from "./pages/Widget";
 
 export function App() {
   return <Widget />
