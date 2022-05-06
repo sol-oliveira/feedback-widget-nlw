@@ -3,6 +3,8 @@ import { CloseButton } from '../../CloseButton';
 import { ArrowLeft, Camera } from 'phosphor-react';
 import { ScreenshotButton } from './ScreenshotButton';
 import { FormEvent, useState } from 'react';
+import { api } from '../../../services/api';
+import { Loading } from '../../Loading';
 
 interface FeedbackContentStepProps {
     feedbackType: FeedbackType;
@@ -15,20 +17,30 @@ export function FeedbackContentStep({
     onFeedbackRestartRequested,
     onFeedbackSent,
 }: FeedbackContentStepProps) {
-    const [screenshot, setScreenshot] = useState<string | null>(null);
+    const [screenShot, setScreenshot] = useState<string | null>(null);
     const [comment, setComment] = useState('');
+    const [isSedingFeedback, setIsSedingFeedback ] = useState(false);
 
     const feedbackTypeInfo = feedbackTypes[feedbackType];
 
-    function handleSubmitFeedback(event: FormEvent) {
+    async function handleSubmitFeedback(event: FormEvent) {
         event.preventDefault();
+        setIsSedingFeedback(true);
+        try{
+           
+          await api.post('feedbacks', {
+            type: feedbackType,
+            comment,
+            screenShot          
+                 
+            });
+            onFeedbackSent();  
 
-        console.log({
-            screenshot,
-            comment
-        })
-
-        onFeedbackSent();
+        }catch (e) {
+            console.log(e);            
+        }finally {
+            setIsSedingFeedback(false);
+        }      
     }
 
     return (
@@ -59,16 +71,16 @@ export function FeedbackContentStep({
 
                 <footer className="flex gap-2 mt-2">
                     <ScreenshotButton
-                        screenshot={screenshot}
+                        screenshot={screenShot}
                         onScreenshotTook={setScreenshot}
                     />
 
                     <button
                         type="submit"
-                        disabled={comment.length === 0}
+                        disabled={comment.length === 0 || isSedingFeedback}
                         className="p-2 bg-brand-500 rounded-md border-transparent flex-1 flex justify-center items-center text-sm hover:bg-brand-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500 transition-colors disabled:opacity-50 disabled:hover:bg-brand-500"
                     >
-                        Enviar Feedback
+                        {isSedingFeedback ? <Loading />: 'Enviar Feedback'}
                     </button>
                 </footer>
             </form>
