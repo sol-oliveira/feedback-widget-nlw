@@ -14,7 +14,11 @@ Widget usado em aplicações web para receber feedbacks de usuários.</p>
 - [Node.js](https://nodejs.org/en/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
-- [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
+- [Tailwindcss](https://tailwindcss.com/docs/installation)
+
+### 🎲 Servidor 
+  - [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
+
 
 ### 🖥️ Rodando o Frond End 
 
@@ -55,6 +59,7 @@ $ npm run dev
   
   ![image](https://user-images.githubusercontent.com/71611273/174827924-8e4bcaaf-d609-429a-854e-ba7ccfa0bd37.png)
   
+
 
 
 <p align="center" dir="auto">Feito com <g-emoji class="g-emoji" alias="hearts" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2665.png">♥</g-emoji>
