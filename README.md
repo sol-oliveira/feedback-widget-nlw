@@ -24,7 +24,7 @@ Widget usado em aplicações web para receber feedbacks de usuários.</p>
 
 ```bash
 # Clonar repositório
-$ git clone https://github.com/sol-oliveira/return-nlw.git
+$ git clone https://github.com/sol-oliveira/feedback-widget-nlw.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd web
